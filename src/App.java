@@ -37,18 +37,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner inputReader = new Scanner(System.in);
         char[][] board = getInitialBoard();
-        boolean p1ToPlay = true;
 
         while (true) {
-            printBoard(board);
-
-            char token;
-            if (p1ToPlay) {
-                token = 'O';
-            } else {
-                token = 'X';
-            }
-            ConnectFourGame.playTwoPlayerGame(p1ToPlay, inputReader, token, board);
+            ConnectFourGame.playTwoPlayerGame(inputReader, board);
             break;
         }
         inputReader.close();
