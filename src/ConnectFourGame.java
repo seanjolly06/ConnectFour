@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 
 public class ConnectFourGame {
 
-    private static void dropStone(Scanner inputReader, char token) {
+    private static void dropStone(Scanner inputReader, char tokenToDrop, char[][] board) {
         int column;
 
         while (true) {
@@ -17,51 +17,45 @@ public class ConnectFourGame {
                 continue;
             }
 
-
-            if () {
-                System.out.println("Spot confirmed! The token you dropped was: " + token);
-            } else if () {
-                System.out.println("Sorry that column is full! Try again!");
-                continue;
-            } else {
-                System.out.println("That column doesn't exist!");
+            if (column < 0 || column >= 7) {
+                System.out.println("Please input a correct column");
                 continue;
             }
+
+            for (int row = 5; row >= 0; row--) {
+                if (board[row][column] == ' ') {
+                    board[row][column] = tokenToDrop;
+                    System.out.println("Token " + tokenToDrop + " dropped successfully on " + (column + 1));
+                }
+            }
+            // If it exits the loop then the column is full
+            System.out.println("Column full, try again!");
         }
     }
 
-    public static void playingOfGame(boolean p1ToPlay, char token, Scanner inputReader) {
-        if (p1ToPlay) {
-            token = 'O';
-        } else {
-            token = 'X';
-        }
-        dropStone(null, token);
-    }
-
-    public static void playerOneTurn(boolean p1ToPlay) {
+    public static void playerOneTurn(boolean p1ToPlay, char token) {
         System.out.println("Starting Player 1's turn...");
-        playingOfGame(p1ToPlay, 'O', null);
+        dropStone(null, token, null);
         p1ToPlay = !p1ToPlay;
     }
 
-    public static void playerTwoTurn(boolean p1ToPlay) {
+    public static void playerTwoTurn(boolean p1ToPlay, char token) {
         System.out.println("Starting Player 2's turn...");
-        playingOfGame(!p1ToPlay, 'X', null);
+        dropStone(null, token, null);
         p1ToPlay = true;
     }
 
-    public static void playTwoPlayerGame(boolean p1ToPlay) {
+    public static void playTwoPlayerGame(boolean p1ToPlay, char token) {
         System.out.println("Hello Player! You have selected this option to play a two player connect four game.");
         System.out.println("We have defaulted you to the O token.");
         System.out.println("You are going first!");
-        boolean playerWin = false;
+        boolean playerWin = true;
 
         while(playerWin) {
             if (p1ToPlay) {
-                playerOneTurn(true);
+                playerOneTurn(true, token);
             } else if (!p1ToPlay) {
-                playerTwoTurn(false);
+                playerTwoTurn(false, token);
             } else {
                 System.out.println("Something went wrong!");
             }

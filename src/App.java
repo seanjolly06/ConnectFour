@@ -52,19 +52,18 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner inputReader = new Scanner(System.in);
         char[][] board = getInitialBoard();
-        printBoard(board);
-
         boolean p1ToPlay = true;
-        // player 1 will always have the O token
-        // player 2 will always have the X token
-        while (true) {
-            // decide if it is player 1 to drop a stone or player 2
-            // get the appropriate player to drop a stone in a particular column
 
-            // check to see if the game has finished due to the baord being full,
-            // if so, get out of the loop
-            // if not, flip the turns so the next player plays
-            p1ToPlay = !p1ToPlay;
+        while (true) {
+            printBoard(board);
+
+            char token;
+            if (p1ToPlay) {
+                token = 'O';
+            } else {
+                token = 'X';
+            }
+            ConnectFourGame.playTwoPlayerGame(p1ToPlay, token);
             break;
         }
         inputReader.close();
