@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class App {
 
-    // moved dropStone in to the ConnectFourGame.java section
+    // I thought about for a while, I have no idea on how to make a win condition.
 
     public static char[][] printBoard(char[][] board) {
         System.out.println("=============================");
