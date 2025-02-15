@@ -33,6 +33,17 @@ public class ConnectFourGame {
         }
     }
 
+    public static boolean isTheBoardFull(char[][] board) {
+        for (int row = 0; row < 6; row++) {
+            for (int column = 0; column < 7; column++) {
+                if (board[row][column] == ' ') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static void playTwoPlayerGame(Scanner inputReader, char[][] board) {
         System.out.println("Hello Player! You have selected this option to play a two player connect four game.");
         System.out.println("We have defaulted you to the o token.");
@@ -52,6 +63,11 @@ public class ConnectFourGame {
             dropStone(inputReader, token, board);
 
             App.printBoard(board);
+
+            if (isTheBoardFull(board)) {
+                System.out.println("Wow! The board is full, it's a tie!");
+                break;
+            }
 
             // Win Condition soon...
 
