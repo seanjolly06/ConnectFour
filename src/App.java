@@ -4,7 +4,7 @@ public class App {
 
     // moved dropStone in to the ConnectFourGame.java section
 
-    public static void printBoard(char[][] board) {
+    public static char[][] printBoard(char[][] board) {
         System.out.println("=============================");
         for (int i = 0; i < 6; i++) {
             // print the current row
@@ -18,6 +18,8 @@ public class App {
         }
         System.out.println("=============================");
         System.out.println("  1   2   3   4   5   6   7");
+
+        return board;
     }
 
     public static char[][] getInitialBoard() {
@@ -46,7 +48,7 @@ public class App {
             } else {
                 token = 'X';
             }
-            ConnectFourGame.playTwoPlayerGame(p1ToPlay, token);
+            ConnectFourGame.playTwoPlayerGame(p1ToPlay, inputReader, token, board);
             break;
         }
         inputReader.close();

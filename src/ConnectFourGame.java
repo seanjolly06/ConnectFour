@@ -33,19 +33,7 @@ public class ConnectFourGame {
         }
     }
 
-    public static void playerOneTurn(boolean p1ToPlay, char token) {
-        System.out.println("Starting Player 1's turn...");
-        dropStone(null, token, null);
-        p1ToPlay = !p1ToPlay;
-    }
-
-    public static void playerTwoTurn(boolean p1ToPlay, char token) {
-        System.out.println("Starting Player 2's turn...");
-        dropStone(null, token, null);
-        p1ToPlay = true;
-    }
-
-    public static void playTwoPlayerGame(boolean p1ToPlay, char token) {
+    public static void playTwoPlayerGame(boolean p1ToPlay, Scanner inputReader, char token, char[][] board) {
         System.out.println("Hello Player! You have selected this option to play a two player connect four game.");
         System.out.println("We have defaulted you to the O token.");
         System.out.println("You are going first!");
@@ -53,9 +41,13 @@ public class ConnectFourGame {
 
         while(playerWin) {
             if (p1ToPlay) {
-                playerOneTurn(true, token);
+                System.out.println("Starting Player 1's turn...");
+                dropStone(inputReader, token, App.printBoard(board));
+                p1ToPlay = !p1ToPlay;
             } else if (!p1ToPlay) {
-                playerTwoTurn(false, token);
+                System.out.println("Starting Player 2's turn...");
+                dropStone(inputReader, token, App.printBoard(board));
+                p1ToPlay = true;
             } else {
                 System.out.println("Something went wrong!");
             }
