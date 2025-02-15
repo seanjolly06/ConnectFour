@@ -38,9 +38,28 @@ public class App {
         Scanner inputReader = new Scanner(System.in);
         char[][] board = getInitialBoard();
 
-        while (true) {
-            ConnectFourGame.playTwoPlayerGame(inputReader, board);
-            break;
+        System.out.println("Would you like to play a game of connect four? y/n");
+        String playConnectFour = inputReader.nextLine();
+        String playAgain;
+
+        if (playConnectFour.equals("y")) {
+            System.out.print("Ok! Booting up Connect Four Simulation...");
+            while (true) {
+                ConnectFourGame.playTwoPlayerGame(inputReader, board);
+                System.out.println("Do you want to play again?");
+                inputReader.next();
+                playAgain = inputReader.nextLine();
+                if (playAgain.equals("y")) {
+                    ConnectFourGame.playTwoPlayerGame(inputReader, board);
+                } else if (playAgain.equals("n")) {
+                    System.out.println("Ok, have a good day!");                   
+                    break;
+                }
+            }
+        } else if (playConnectFour.endsWith("n")) {
+            System.out.println("Ok, have a good day!");
+        } else {
+            System.out.println("Invalid option.");
         }
         inputReader.close();
     }
